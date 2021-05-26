@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { User } from 'src/app/shared/user.model';
 import { UserService } from 'src/app/shared/user.service'
+import{FormBuilder,FormGroup} from '@angular/forms'
 
 
 @Component({
@@ -11,14 +12,14 @@ import { UserService } from 'src/app/shared/user.service'
   ]
 })
 export class UserFormComponent implements OnInit {
-
   user: User = new User(); // данные вводимого пользователя
-  
+  form: FormGroup;
   receivedUser: User | undefined; // полученный пользователь
   done: boolean = false;
   constructor(public service:UserService) { }
 
   ngOnInit(): void {
+    
   }   
 
   public AddUser(user : User)

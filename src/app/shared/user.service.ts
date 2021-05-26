@@ -23,7 +23,7 @@ export class UserService {
 
   postUser(user: User)
   {
-    const body = { name: user.Name, email: user.Email, password: user.Password, surname: user.Surname, role: user.Role };
+    const body = { name: user.name, email: user.email, password: user.password, surname: user.surname, role: user.role };
     return this.httpClient.post(this.baseURL + '/CreateUser',body);
   }
   getUsers(): Observable<User[]> {
