@@ -12,14 +12,12 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class UserService {
 
- readonly baseURL = 'http://localhost:26561/api/User'
-  public formData: User = new User();
+  readonly baseURL = 'http://localhost:26561/api/User'
+  //public formData: User = new User();
   public users: any;
 
   constructor(private httpClient: HttpClient) {
   }
-
-
 
   postUser(user: User)
   {
