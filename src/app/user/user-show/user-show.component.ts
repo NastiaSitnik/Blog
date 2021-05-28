@@ -16,7 +16,7 @@ import { map } from 'rxjs/operators';
 
 export class UserShowComponent implements OnInit {
   
-  Users: any = [];
+  users: any = [];
 
 
   // users: Array<User>;
@@ -25,7 +25,7 @@ export class UserShowComponent implements OnInit {
   ngOnInit(){
     
     this.fetchUsers()
-
+    //this.userService.getUsers().subscribe(responce => { this.users = responce; }, err => { console.log(err);})
 
   }
   async fetchUsers() {
@@ -33,7 +33,7 @@ export class UserShowComponent implements OnInit {
     
     let dataList = await users.toPromise();
 
-    this.Users = dataList;
+    this.users = dataList;
     
   }  
   

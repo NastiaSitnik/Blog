@@ -14,6 +14,7 @@ import { Guid } from "guid-typescript";
 import { LoginComponent } from './login/login.component';
 import { HomeComponent } from './home/home.component';
 import { from } from 'rxjs';
+import { AuthGuard } from './guards/auth-guard.service';
 
 export function tokenGetter()
 {
@@ -23,11 +24,18 @@ export function tokenGetter()
 const itemRoutes: Routes = [
     { path: '', component: LoginComponent},
     { path: 'form', component: UserFormComponent},
-    { path: 'show', component: UserShowComponent}
+    { path: 'show', component: UserShowComponent,canActivate: [AuthGuard]}
 ];
 @NgModule({
   imports: [
-    BrowserModule, FormsModule, HttpClientModule, ReactiveFormsModule, RouterModule.forRoot(itemRoutes)
+    BrowserModule, FormsModule, HttpClientModule, ReactiveFormsModule, RouterModule.forRoot(itemRoutes),
+    // JwtModule.forRoot({
+    //   config: {
+    //     tokenGetter: tokenGetter,
+    //     allowedDomains: ["localhost:26561"],
+    //     disallowedRoutes:[]
+    // }})
+    JwtModule.forRoot({config:{tokenGetter:tokenGetter,allowedDomains:["localhost:26561"]}})
     //JwtModule.forRoot({ config: {tokenGetter: tokenGetter, allowedDomains:["localhost:26561"]})
   ],
   declarations: [
