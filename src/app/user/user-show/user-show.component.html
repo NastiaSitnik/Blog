@@ -2,7 +2,6 @@
     <thead class = "thead-light">
         <tr ngclass="btn-primary">
             <th class="tbl2">Email</th>
-            <th class="tbl2">Password</th>
             <th class="tbl2">Name</th>
             <th class="tbl2">Surname</th>
             <th class="tbl2">Role</th>
@@ -22,11 +21,13 @@
     </tr> -->
     <tr *ngFor="let item of users">
         <td class="tbl2">{{item.email}}</td>
-        <td class="tbl2">{{item.password}}</td>
         <td class="tbl2">{{item.name}}</td>
         <td class="tbl2">{{item.surname}}</td>
-        <td class="tbl2">{{item.role}}</td>
+        <!-- <td class="tbl2" >{{item.role}}</td> -->
+        <td class="tbl2" [ngSwitch]="item.role">
+            <ng-template ngSwitchCase="1">User</ng-template>
+            <ng-template ngSwitchCase="2">Admin</ng-template>
+        </td>
     </tr>
     </tbody>
 </table>
-
