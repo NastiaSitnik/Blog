@@ -23,4 +23,9 @@ export class ArticleService {
     //const url = '${this.baseURL}/${articleId}';
     return this.httpClient.get<Article>(this.baseURL + '/' + articleId);
   }
+  getArticlesByTag(tagId:Guid): Observable<Article[]>
+  {
+    let articles = this.httpClient.get<Article[]>(this.baseURL + '/GetArticlesByTag/' + tagId);
+    return articles;
+  }
 }

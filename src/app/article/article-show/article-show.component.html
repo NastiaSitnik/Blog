@@ -30,4 +30,11 @@
     <div class="comment" *ngFor = "let comment of article.comments">
         <span class="before-mord">{{comment.text}}</span>
     </div>
+    <form novalidate #form="ngForm">
+        <textarea name="" id="" cols="168" rows="5" placeholder="Comment" name="text" #text="ngModel"
+            [(ngModel)]="comment.text"></textarea>
+        <br />
+        <br />
+        <a [routerLink]="['/article/'+id]"><button class="btn btn-primary" (click)="AddComment(comment)" type="button">Comment</button></a>
+    </form>
 </div>

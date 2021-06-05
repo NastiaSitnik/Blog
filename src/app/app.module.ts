@@ -19,12 +19,12 @@ import { AuthGuard } from './guards/auth-guard.service';
 import { NavComponent } from './nav/nav.component';
 import { ArticleComponent } from './article/article.component';
 import { TagComponent } from './tag/tag.component';
-import { CommentComponent } from './comment/comment.component';
 import { TagService } from './shared/tag.service';
 import { CommentService } from './shared/comment.service';
 import { ArticleService } from './shared/article.service';
 import { ArticlesShowComponent } from './article/articles-show/articles-show.component';
 import { ArticleShowComponent } from './article/article-show/article-show.component';
+import { ArticlesTagComponent } from './article/articles-tag/articles-tag.component';
 
 export function tokenGetter()
 {
@@ -37,8 +37,10 @@ const itemRoutes: Routes = [
      { path: 'show', component: UserShowComponent,canActivate: [AuthGuard]},
   // { path: 'show', component: UserShowComponent },
   { path: '', component: ArticlesShowComponent },
+  { path: '#', component: ArticlesShowComponent },
   // {path:'article/:id',component:ArticleShowComponent}
-  {path:'article/:id',component:ArticleShowComponent}
+  { path: 'article/:id', component: ArticleShowComponent },
+  {path:'tag/:id',component:ArticlesTagComponent}
 ];
 @NgModule({
   imports: [
@@ -62,9 +64,9 @@ const itemRoutes: Routes = [
     NavComponent,
     ArticleComponent,
     TagComponent,
-    CommentComponent,
     ArticlesShowComponent,
-    ArticleShowComponent
+    ArticleShowComponent,
+    ArticlesTagComponent
   ],
   providers: [UserService,TagService,CommentService,ArticleService],
   bootstrap: [AppComponent]
