@@ -25,6 +25,7 @@ import { ArticleService } from './shared/article.service';
 import { ArticlesShowComponent } from './article/articles-show/articles-show.component';
 import { ArticleShowComponent } from './article/article-show/article-show.component';
 import { ArticlesTagComponent } from './article/articles-tag/articles-tag.component';
+import { ArticleCommentsEditComponent } from './article/article-comments-edit/article-comments-edit.component';
 
 export function tokenGetter()
 {
@@ -40,7 +41,8 @@ const itemRoutes: Routes = [
   { path: '#', component: ArticlesShowComponent },
   // {path:'article/:id',component:ArticleShowComponent}
   { path: 'article/:id', component: ArticleShowComponent },
-  {path:'tag/:id',component:ArticlesTagComponent}
+  { path: 'tag/:id', component: ArticlesTagComponent },
+  {path:'editComment/:commentId',component:ArticleCommentsEditComponent}
 ];
 @NgModule({
   imports: [
@@ -66,7 +68,9 @@ const itemRoutes: Routes = [
     TagComponent,
     ArticlesShowComponent,
     ArticleShowComponent,
-    ArticlesTagComponent
+    ArticlesTagComponent,
+    ArticleCommentsEditComponent,
+    ArticleCommentsEditComponent
   ],
   providers: [UserService,TagService,CommentService,ArticleService],
   bootstrap: [AppComponent]

@@ -18,10 +18,12 @@ export class ArticleShowComponent implements OnInit {
   readonly baseURL = 'http://localhost:26561/api/Article';
   article: Article;
   id: Guid;
+  commentId:Guid;
   comment: Comment = new Comment();
   form: FormGroup;
   receivedComment: Comment | undefined; // полученный пользователь
   done: boolean = false;
+  d: boolean = false;
   constructor(private route: ActivatedRoute, private service: ArticleService,private http:HttpClient,public commentService : CommentService)
   {
   }
@@ -32,15 +34,29 @@ export class ArticleShowComponent implements OnInit {
     // debugger
     // this.http.get(this.baseURL + '/' + this.id).subscribe((res:any) => {this.article = res.data})
     // console.log(this.article);
-    this.service.getArticle(this.id).subscribe((data:Article) =>this.article = data)
+    this.service.getArticle(this.id).subscribe((data: Article) => this.article = data)
   }
   public AddComment(comment: Comment)
   {
     this.commentService.createComment(this.id, comment).subscribe((data: any) => { this.receivedComment = data; this.done = true; this.ngOnInit(); this.comment.text = ""}, err => { console.log(err); })
   }
-  
+
+  public UpdateComment(comment: Comment)
+  {
+    comment.articleId = this.id;
+    this.commentService.updateComment(comment.id,comment).subscribe((data: any) => { this.receivedComment = data; this.done = true; this.ngOnInit(); this.comment.text = ""}, err => { console.log(err); })
+  }
+
   //  getArticle(id: Guid)
   //  {
   //    this.service.getArticle(id).subscribe((data: Article) => this.article = data);
   //  }
+  onEdit(id:Guid)
+  {
+    this.comment.id = id;
+    this.comment.articleId = this.id;
+    this.commentService.updateComment(this.comment.id, this.comment).subscribe((data: any) => { this.receivedComment = data; this.done = true; this.service.getArticle(this.id).subscribe((data: Article) => this.article = data); this.comment.text = "" }, err => { console.log(err); })
+
+    // this.d = true;
+  }
 }

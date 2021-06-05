@@ -17,4 +17,9 @@ export class CommentService {
     const body = { text: comment.text, articleId: id };
     return this.httpClient.post(this.baseURL + '/CreateComment/' + id, body);
   }
+  updateComment(id: Guid, comment: Comment)
+  {
+    const body = { text: comment.text };
+    return this.httpClient.put(this.baseURL+'/UpdateComment/'+ id,body)
+  }
 }
