@@ -9,7 +9,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 import { UserService } from './shared/user.service';
 import { JwtModule } from '@auth0/angular-jwt';
-
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 import { Guid } from "guid-typescript";
 import { LoginComponent } from './login/login.component';
@@ -25,7 +25,7 @@ import { ArticleService } from './shared/article.service';
 import { ArticlesShowComponent } from './article/articles-show/articles-show.component';
 import { ArticleShowComponent } from './article/article-show/article-show.component';
 import { ArticlesTagComponent } from './article/articles-tag/articles-tag.component';
-import { ArticleCommentsEditComponent } from './article/article-comments-edit/article-comments-edit.component';
+import { ArticleCreateComponent } from './article/article-create/article-create.component';
 
 export function tokenGetter()
 {
@@ -35,14 +35,12 @@ export function tokenGetter()
 const itemRoutes: Routes = [
     { path: 'login', component: LoginComponent},
     { path: 'form', component: UserFormComponent},
-     { path: 'show', component: UserShowComponent,canActivate: [AuthGuard]},
-  // { path: 'show', component: UserShowComponent },
-  { path: '', component: ArticlesShowComponent },
-  { path: '#', component: ArticlesShowComponent },
-  // {path:'article/:id',component:ArticleShowComponent}
-  { path: 'article/:id', component: ArticleShowComponent },
+    { path: 'show', component: UserShowComponent,canActivate: [AuthGuard]},
+    { path: '', component: ArticlesShowComponent },
+    { path: '#', component: ArticlesShowComponent },
+    { path: 'article/:id', component: ArticleShowComponent },
   { path: 'tag/:id', component: ArticlesTagComponent },
-  {path:'editComment/:commentId',component:ArticleCommentsEditComponent}
+    {path: 'create',component:ArticleCreateComponent}
 ];
 @NgModule({
   imports: [
@@ -69,10 +67,9 @@ const itemRoutes: Routes = [
     ArticlesShowComponent,
     ArticleShowComponent,
     ArticlesTagComponent,
-    ArticleCommentsEditComponent,
-    ArticleCommentsEditComponent
+    ArticleCreateComponent,
   ],
-  providers: [UserService,TagService,CommentService,ArticleService],
+  providers: [UserService,TagService,CommentService,ArticleService,JwtHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

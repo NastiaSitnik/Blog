@@ -1,3 +1,5 @@
+<div class="container">
+    <div style="margin-top: 10px; margin-left: 13px;" *ngIf = "isUserAuthenticated()"><a><button class="btn btn-primary" type="submit" routerLink = "/create">+ Create</button></a></div>
 <div *ngFor="let article of articles" class="container">
     <div class="articlepost-item" style="margin-top: 10px;">
         <div><i class="fas fa-user"> {{article.user.name}} {{article.user.surname}}</i>
@@ -10,4 +12,5 @@
         </div>
         <a [routerLink]="['/article/'+article.id]"><i class="fas fa-comment-dots"> {{article.comments.length}}</i></a>
     </div>
+</div>
 </div>

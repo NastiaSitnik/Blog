@@ -3,6 +3,7 @@ import { Observable, of } from 'rxjs';
 import { Article } from './article.model'
 import { HttpClient } from '@angular/common/http'
 import { Guid } from 'guid-typescript';
+import { Comment } from './comment.model'
 
 @Injectable({
   providedIn: 'root'
@@ -23,9 +24,21 @@ export class ArticleService {
     //const url = '${this.baseURL}/${articleId}';
     return this.httpClient.get<Article>(this.baseURL + '/' + articleId);
   }
-  getArticlesByTag(tagId:Guid): Observable<Article[]>
-  {
+  getArticlesByTag(tagId: Guid): Observable<Article[]> {
     let articles = this.httpClient.get<Article[]>(this.baseURL + '/GetArticlesByTag/' + tagId);
     return articles;
+  }
+  AddArticle(article: Article)
+  {
+    console.log("call AddArticle");
+    let userIdArt: string =  article.userId.toString()
+    debugger
+    const body = {
+  
+        title: article.title,
+        text: article.text,
+        tags: article.tags
+    };
+    return this.httpClient.post(this.baseURL + '/CreateArticle/' + userIdArt,body);
   }
 }

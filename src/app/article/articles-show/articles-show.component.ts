@@ -20,4 +20,15 @@ export class ArticlesShowComponent implements OnInit {
     //console.log(this.articles[0] + "sfsdfdsfds");
   }
 
+  isUserAuthenticated()
+  {
+    const token: string | any = localStorage.getItem("jwt");
+    if (token) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  }
+  
 }

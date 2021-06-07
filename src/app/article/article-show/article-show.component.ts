@@ -36,6 +36,7 @@ export class ArticleShowComponent implements OnInit {
     // console.log(this.article);
     this.service.getArticle(this.id).subscribe((data: Article) => this.article = data)
   }
+
   public AddComment(comment: Comment)
   {
     this.commentService.createComment(this.id, comment).subscribe((data: any) => { this.receivedComment = data; this.done = true; this.ngOnInit(); this.comment.text = ""}, err => { console.log(err); })
