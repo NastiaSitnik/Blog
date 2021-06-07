@@ -26,6 +26,8 @@ import { ArticlesShowComponent } from './article/articles-show/articles-show.com
 import { ArticleShowComponent } from './article/article-show/article-show.component';
 import { ArticlesTagComponent } from './article/articles-tag/articles-tag.component';
 import { ArticleCreateComponent } from './article/article-create/article-create.component';
+import { ErrorComponent } from './error/error.component';
+import { ArticleEditComponent } from './article/article-edit/article-edit.component';
 
 export function tokenGetter()
 {
@@ -37,10 +39,11 @@ const itemRoutes: Routes = [
     { path: 'form', component: UserFormComponent},
     { path: 'show', component: UserShowComponent,canActivate: [AuthGuard]},
     { path: '', component: ArticlesShowComponent },
-    { path: '#', component: ArticlesShowComponent },
     { path: 'article/:id', component: ArticleShowComponent },
-  { path: 'tag/:id', component: ArticlesTagComponent },
-    {path: 'create',component:ArticleCreateComponent}
+   { path:  'tag/:id', component: ArticlesTagComponent },
+  { path: 'create', component: ArticleCreateComponent },
+  {path:'edit/:id',component:ArticleEditComponent},
+  {path:'**',component:ErrorComponent}
 ];
 @NgModule({
   imports: [
@@ -68,6 +71,8 @@ const itemRoutes: Routes = [
     ArticleShowComponent,
     ArticlesTagComponent,
     ArticleCreateComponent,
+    ErrorComponent,
+    ArticleEditComponent
   ],
   providers: [UserService,TagService,CommentService,ArticleService,JwtHelperService],
   bootstrap: [AppComponent]

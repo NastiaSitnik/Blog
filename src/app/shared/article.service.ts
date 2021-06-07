@@ -32,7 +32,6 @@ export class ArticleService {
   {
     console.log("call AddArticle");
     let userIdArt: string =  article.userId.toString()
-    debugger
     const body = {
   
         title: article.title,
@@ -40,5 +39,17 @@ export class ArticleService {
         tags: article.tags
     };
     return this.httpClient.post(this.baseURL + '/CreateArticle/' + userIdArt,body);
+  }
+  EditArticle(article: Article)
+  {
+    let userIdArt: string = article.userId.toString()
+    let id: string = article.id.toString();
+    const body = {
+  
+        title: article.title,
+        text: article.text,
+        tags: article.tags
+    };
+    return this.httpClient.put(this.baseURL + '/EditArticle/' + id + '/' + userIdArt,body);
   }
 }

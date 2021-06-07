@@ -19,4 +19,9 @@ export class ArticlesTagComponent implements OnInit {
     this.id = this.route.snapshot.params['id'];
     this.service.getArticlesByTag(this.id).subscribe((data: Article[]) => this.articles = data);
   }
+  Reload()
+  {
+    this.id = this.route.snapshot.params['id'];
+    this.service.getArticlesByTag(this.id).subscribe((data: Article[]) => this.articles = data);
+  }
 }

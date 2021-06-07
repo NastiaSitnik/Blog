@@ -60,4 +60,9 @@ export class ArticleShowComponent implements OnInit {
 
     // this.d = true;
   }
+
+  onArticle()
+  {  
+  }
+
 }

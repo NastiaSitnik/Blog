@@ -1,10 +1,9 @@
 <div *ngFor="let article of articles" class="container">
     <div class="articlepost-item" style="margin-top: 10px;">
         <div><i class="fas fa-user"> {{article.user.name}} {{article.user.surname}}</i>
-            <div *ngFor="let tag of article.tags" class="category"><a [routerLink]="['/tag/'+ tag.id]"
+            <div *ngFor="let tag of article.tags" class="category" (click) = "Reload()"><a [routerLink]="['/tag/'+ tag.id]"
                     routerLinkActive="router-link-active">{{tag.text}}</a></div>
         </div>
-        <!-- <i class="fas fa-user"> {{article.user.name}} {{article.user.surname}}</i> -->
         <h3>{{article.title}}</h3>
         <div class="post-excerpt">
             <span class="before-mord">{{article.text}}</span>

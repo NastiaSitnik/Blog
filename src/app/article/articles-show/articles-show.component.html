@@ -6,7 +6,8 @@
             <div *ngFor="let tag of article.tags" class="category"><a [routerLink]="['/tag/'+tag.id]" routerLinkActive="router-link-active" >{{tag.text}}</a></div>
         </div>
         <!-- <i class="fas fa-user"> {{article.user.name}} {{article.user.surname}}</i> -->
-        <h3>{{article.title}}</h3>
+        <h3 style="display: inline-block;">{{article.title}}</h3>
+        <a [routerLink]="['/edit/'+article.id]" routerLinkActive="router-link-active" ><i class="fas fa-edit" style="display: inline-block; margin-left: 10px;"></i></a>
         <div class="post-excerpt">
             <span class="before-mord">{{article.text}}</span>
         </div>

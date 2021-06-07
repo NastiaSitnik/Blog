@@ -1,22 +1,22 @@
-import jwt_decode from "jwt-decode";
 import { Component, OnInit } from '@angular/core';
+import { FormGroup } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
-import { Guid } from "guid-typescript";
-import { FormGroup } from "@angular/forms";
-import { Article } from "src/app/shared/article.model";
-import { ArticleService } from "src/app/shared/article.service";
-import { Tag } from "src/app/shared/tag.model";
+import { Guid } from 'guid-typescript';
+import { Article } from 'src/app/shared/article.model';
+import { ArticleService } from 'src/app/shared/article.service';
+import { Tag } from 'src/app/shared/tag.model';
 
 @Component({
-  selector: 'app-article-create',
-  templateUrl: './article-create.component.html',
-  styleUrls: ['./article-create.component.css']
+  selector: 'app-article-edit',
+  templateUrl: './article-edit.component.html',
+  styleUrls: ['./article-edit.component.css']
 })
-export class ArticleCreateComponent implements OnInit {
+export class ArticleEditComponent implements OnInit {
 
-  constructor(public service:ArticleService) { }
+  constructor(private route: ActivatedRoute,public service:ArticleService) { }
   
-  article: Article = new Article(); 
+  article: Article = new Article();
 
   token: string | any = localStorage.getItem("jwt");
 
@@ -32,6 +32,8 @@ export class ArticleCreateComponent implements OnInit {
 
   userId: Guid;
 
+  id: Guid;
+
 
 
   decodedToken = this.helper.decodeToken(this.token);
@@ -45,6 +47,8 @@ export class ArticleCreateComponent implements OnInit {
   // }
 
   ngOnInit(): void {
+
+    this.id = this.route.snapshot.params['id']
     this.tagsText = "";
 //     var str = "Apples#are#round#and#apples#are#juicy."; 
 // var splitted = str.split("#"); 
@@ -52,10 +56,12 @@ export class ArticleCreateComponent implements OnInit {
     // console.log(typeof (Guid.parse(this.decodedToken.sub)));
     console.log(this.userId);
   }
-  public AddArticlee(article:Article)
+
+  editArticle(article: Article)
   {
     this.userId = Guid.parse(this.decodedToken.sub);
     article.userId = this.userId;
+    article.id = this.id;
     var str = this.tagsText;
     // this.article.tags = [];
     //var splitted = str.split("#");
@@ -74,16 +80,9 @@ export class ArticleCreateComponent implements OnInit {
     });
     
     article.tags = listTmp;
-    this.service.AddArticle(article).subscribe((data: any) => {
+
+    this.service.EditArticle(article).subscribe((data: any) => {
       this.receivedArticle = data; this.done = true; window.location.reload();
     }, err => { console.log(err); });
-    
-
-    // let uuu = functionArticle.subscribe((data: any) => {
-    //   this.receivedArticle = data; this.done = true; window.location.reload();
-    // }, err => { console.log(err); })
-    
-    
-
   }
 }
