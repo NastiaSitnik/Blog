@@ -23,6 +23,10 @@ export class LoginComponent implements OnInit {
     }
     return this.http.post('http://localhost:26561/api/Auth/login',credntials)
   }
+  reboot()
+  {
+    window.location.reload();
+  }
   l(form: NgForm)
   {
     this.login(form).subscribe(responce => {

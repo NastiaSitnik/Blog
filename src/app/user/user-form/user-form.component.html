@@ -1,39 +1,75 @@
-<div class="container">
+<div class="continer" *ngIf = "!isUserAuthenticated()">
     <form novalidate #form="ngForm">
         <div class="form-group">
             <label for="exampleInputEmail">User Email</label>
-            <input type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
+            <input type="email" required class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
                 placeholder="Enter email" name="email" #email="ngModel" [(ngModel)]="user.email">
+            <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required</small>
         </div>
         <div class="form-group">
             <label for="exampleInputPassword">User Password</label>
-            <input type="password" class="form-control" id="exampleInputEmail" placeholder="Enter password" name="password"
+            <input required type="password" class="form-control" id="exampleInputEmail" placeholder="Enter password" name="password"
                 #password="ngModel" [(ngModel)]="user.password">
+            <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required</small>
         </div>
         <div class="form-group">
             <label for="exampleInputName">User Name</label>
-            <input type="text" class="form-control" id="exampleInputName" placeholder="Enter name" name="name"
+            <input required type="text" class="form-control" id="exampleInputName" placeholder="Enter name" name="name"
                 #name="ngModel" [(ngModel)]="user.name">
+            <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required</small>
         </div>
         <div class="form-row">
             <div class="form-group col-sm">
-                <label for="exampleInputSurname">User Surame</label>
-                <input type="text" class="form-control" id="exampleInputSurname" placeholder="Enter surname" name="surname"
+                <label for="exampleInputSurname">User Surname</label>
+                <input  required type="text" class="form-control" id="exampleInputSurname" placeholder="Enter surname" name="surname"
                     #surname="ngModel" [(ngModel)]="user.surname">
-            </div>
-            <div class="form-group col-sm">
-                <label for="exampleInputName">User Role</label>
-                <input type="text" class="form-control" id="exampleInputName" placeholder="Enter role" name="role"
-                    #role="ngModel" [(ngModel)]="user.role">
+                <small class="text-danger" [class.d-none]="surname.valid || surname.untouched">Surname is required</small>
             </div>
         </div>
         <div class="d-grid gap-2">
             <a routerLink=""><button class="btn btn-primary" type="button" style="margin-top: 20px;"
                     (click)="AddUser(user)">Submit</button></a>
         </div>
-    
-        <!-- <div class="d-grid gap-2">
-            <button class="btn btn-primary" type="button" style="margin-top: 20px;" (click) = "myEvent()">Submit</button>
-        </div> -->
+    </form>
+</div>
+
+<div class="container" *ngIf = "isUserAuthenticated()">
+    <form novalidate #form="ngForm">
+        <div class="form-group">
+            <label for="exampleInputEmail">User Email</label>
+            <input required type="email" class="form-control" id="exampleInputEmail" aria-describedby="emailHelp"
+                placeholder="Enter email" name="email" #email="ngModel" [(ngModel)]="user.email">
+            <small class="text-danger" [class.d-none]="email.valid || email.untouched">Email is required</small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputPassword">User Password</label>
+            <input required type="password" class="form-control" id="exampleInputEmail" placeholder="Enter password" name="password"
+                #password="ngModel" [(ngModel)]="user.password">
+            <small class="text-danger" [class.d-none]="password.valid || password.untouched">Password is required</small>
+        </div>
+        <div class="form-group">
+            <label for="exampleInputName">User Name</label>
+            <input required type="text" class="form-control" id="exampleInputName" placeholder="Enter name" name="name"
+                #name="ngModel" [(ngModel)]="user.name">
+            <small class="text-danger" [class.d-none]="name.valid || name.untouched">Name is required</small>
+        </div>
+        <div class="form-row">
+            <div class="form-group col-sm">
+                <label for="exampleInputSurname">User Surname</label>
+                <input required type="text" class="form-control" id="exampleInputSurname" placeholder="Enter surname" name="surname"
+                    #surname="ngModel" [(ngModel)]="user.surname">
+                <small class="text-danger" [class.d-none]="surname.valid || surname.untouched">Surname is required</small>
+            </div>
+            <div class="form-group col-sm">
+                <label for="exampleInputName">User Role</label>
+                <input required type="text" class="form-control" id="exampleInputName" placeholder="Enter role" name="role"
+                    #role="ngModel" [(ngModel)]="user.role">
+                <small class="text-danger" [class.d-none]="role.valid || role.untouched">Role is required</small>
+            </div>
+        </div>
+        <div class="d-grid gap-2">
+            <a routerLink=""><button class="btn btn-primary" type="button" style="margin-top: 20px;"
+                    (click)="AddUser(user)">Submit</button></a>
+        </div>
     </form>
 </div>

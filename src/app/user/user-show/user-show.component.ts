@@ -19,13 +19,13 @@ export class UserShowComponent implements OnInit {
   users: any = [];
 
 
-  // users: Array<User>;
+
   constructor(private formbulider: FormBuilder, public userService: UserService,private http: HttpClient) {}
 
   ngOnInit(){
     
     this.fetchUsers()
-    //this.userService.getUsers().subscribe(responce => { this.users = responce; }, err => { console.log(err);})
+    
 
   }
   async fetchUsers() {

@@ -13,11 +13,14 @@
           <a class="nav-link" routerLink = "/form">Register</a>
         </li>
       </ul>
-    <ul class="navbar-nav" *ngIf="isUserAuthenticated()">
+      <ul class="navbar-nav" *ngIf="isUserAuthenticated()">
         <li class="nav-item">
-            <a routerLink = " " class="nav-link active" aria-current="page" href="#" (click) = "logOut() ">Logout</a>
+        <a routerLink="" class="nav-link active" aria-current="page" (click)="logOut() ">Logout</a>
         </li>
-    </ul>
+        <li class="nav-item" *ngIf = "isAdmin()">
+          <a class="nav-link" routerLink="/form">Register</a>
+        </li>
+      </ul>
     </div>
   </div>
 </nav>

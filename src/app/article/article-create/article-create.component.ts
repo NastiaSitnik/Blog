@@ -1,4 +1,3 @@
-import jwt_decode from "jwt-decode";
 import { Component, OnInit } from '@angular/core';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { Guid } from "guid-typescript";
@@ -17,39 +16,22 @@ export class ArticleCreateComponent implements OnInit {
   constructor(public service:ArticleService) { }
   
   article: Article = new Article(); 
-
   token: string | any = localStorage.getItem("jwt");
-
   form: FormGroup;
-
   tagsText: string;
-
   helper = new JwtHelperService();
-
-  receivedArticle: Article | undefined; // полученный пользователь
-
+  receivedArticle: Article | undefined; // полученная статья
   done: boolean = false;
-
   userId: Guid;
 
 
 
   decodedToken = this.helper.decodeToken(this.token);
-  // getDecodedAccessToken(token: string): any {
-  //   try{
-  //       return jwt_decode(token);
-  //   }
-  //   catch(Error){
-  //       return null;
-  //   }
-  // }
+
 
   ngOnInit(): void {
     this.tagsText = "";
-//     var str = "Apples#are#round#and#apples#are#juicy."; 
-// var splitted = str.split("#"); 
-//console.log(splitted)
-    // console.log(typeof (Guid.parse(this.decodedToken.sub)));
+
     console.log(this.userId);
   }
   public AddArticlee(article:Article)
@@ -57,8 +39,7 @@ export class ArticleCreateComponent implements OnInit {
     this.userId = Guid.parse(this.decodedToken.sub);
     article.userId = this.userId;
     var str = this.tagsText;
-    // this.article.tags = [];
-    //var splitted = str.split("#");
+    
     var splitted = str.split(new RegExp('\#', 'g'));
 
     let listTmp: Tag[] = [];
@@ -77,12 +58,6 @@ export class ArticleCreateComponent implements OnInit {
     this.service.AddArticle(article).subscribe((data: any) => {
       this.receivedArticle = data; this.done = true; window.location.reload();
     }, err => { console.log(err); });
-    
-
-    // let uuu = functionArticle.subscribe((data: any) => {
-    //   this.receivedArticle = data; this.done = true; window.location.reload();
-    // }, err => { console.log(err); })
-    
     
 
   }

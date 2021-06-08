@@ -11,17 +11,10 @@ import { ArticleService } from '../shared/article.service';
 })
 export class ArticleComponent implements OnInit {
 
-  //article: Article;
-  //articles: Article[] = [];
-  // constructor(public service: ArticleService) { }
   constructor(){}
   ngOnInit(): void {
-    //this.service.getArticles().subscribe((data: Article[]) => this.articles = data);
+    
   }
 
-  // getArticle(id: Guid)
-  // {
-  //   this.service.getArticle(id).subscribe((data: Article) => this.article = data);
-  // }
 
 }

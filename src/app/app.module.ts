@@ -42,20 +42,15 @@ const itemRoutes: Routes = [
     { path: 'article/:id', component: ArticleShowComponent },
    { path:  'tag/:id', component: ArticlesTagComponent },
   { path: 'create', component: ArticleCreateComponent },
-  {path:'edit/:id',component:ArticleEditComponent},
+  { path: 'edit/:id', component: ArticleEditComponent },
+  {path:'nav',component: NavComponent},
   {path:'**',component:ErrorComponent}
 ];
 @NgModule({
   imports: [
-    BrowserModule, FormsModule, HttpClientModule, ReactiveFormsModule, RouterModule.forRoot(itemRoutes),
-    // JwtModule.forRoot({
-    //   config: {
-    //     tokenGetter: tokenGetter,
-    //     allowedDomains: ["localhost:26561"],
-    //     disallowedRoutes:[]
-    // }})
+    BrowserModule, FormsModule, HttpClientModule, ReactiveFormsModule, ReactiveFormsModule, RouterModule.forRoot(itemRoutes),
+    
     JwtModule.forRoot({config:{tokenGetter:tokenGetter,allowedDomains:["localhost:26561"]}})
-    //JwtModule.forRoot({ config: {tokenGetter: tokenGetter, allowedDomains:["localhost:26561"]})
   ],
   declarations: [
     AppComponent,

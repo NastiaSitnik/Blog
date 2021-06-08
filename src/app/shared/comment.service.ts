@@ -14,12 +14,13 @@ export class CommentService {
 
   createComment(id:Guid,comment:Comment)
   {
-    const body = { text: comment.text, articleId: id };
+    
+    const body = { text: comment.text, articleId: id ,userId:comment.userId.toString()};
     return this.httpClient.post(this.baseURL + '/CreateComment/' + id, body);
   }
   updateComment(id: Guid, comment: Comment)
   {
-    const body = { text: comment.text };
+    const body = { text: comment.text,userId:comment.userId.toString()};
     return this.httpClient.put(this.baseURL+'/UpdateComment/'+ id,body)
   }
 }
