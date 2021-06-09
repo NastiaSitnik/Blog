@@ -13,6 +13,8 @@ export class NavComponent implements OnInit {
   helper = new JwtHelperService();
   decodedToken = this.helper.decodeToken(this.token);
   isAdministrator: boolean;
+  name: string;
+  surname: string;
   constructor() { }
 
   ngOnInit(): void {
@@ -22,6 +24,11 @@ export class NavComponent implements OnInit {
   {
     const token: string | any = localStorage.getItem("jwt");
     if (token) {
+      const token: string | any = localStorage.getItem("jwt");
+    const helper = new JwtHelperService();
+    const decodedToken = helper.decodeToken(token);
+      this.name = decodedToken['Name'];
+      this.surname = decodedToken['Surname']
       return true;
     }
     else {
